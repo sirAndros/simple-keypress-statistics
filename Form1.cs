@@ -4,6 +4,7 @@ using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using System.Windows.Input;
 
@@ -54,7 +55,7 @@ namespace KeyPressStat
         private void SaveToFile()
         {
             var fileName = Guid.NewGuid().ToString() + ".txt";
-            using var file = new StreamWriter(fileName);
+            using var file = new StreamWriter(fileName, append: false, Encoding.UTF8);
             foreach (var item in _stat.Values)
                 file.WriteLine($"{item.VKCode:X4} | {item.Key} | {item.Character} | {item.Count}");
         }
