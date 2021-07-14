@@ -11,13 +11,13 @@ using System.Windows.Input;
 
 namespace KeyPressStat
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private ConcurrentDictionary<int, StatisticsEntry> _stats = new ConcurrentDictionary<int, StatisticsEntry>();
         private KeyboardListener _listener = new KeyboardListener();
         private int _lastKeyCode;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
 
