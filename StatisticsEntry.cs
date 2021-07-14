@@ -6,7 +6,6 @@ namespace KeyPressStat
     class StatisticsEntry
     {
         private int _count;
-
         public int Count => _count;
 
         public int VKCode { get; }
@@ -18,6 +17,7 @@ namespace KeyPressStat
             VKCode = vkCode;
             Key = key;
             Character = character;
+            _count = 1;
         }
 
         public int Increment()
