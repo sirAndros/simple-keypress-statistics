@@ -29,36 +29,35 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this._listBox = new System.Windows.Forms.ListBox();
+            this._updateTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // listBox1
             // 
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(0, 0);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(800, 450);
-            this.listBox1.TabIndex = 0;
+            this._listBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._listBox.FormattingEnabled = true;
+            this._listBox.ItemHeight = 20;
+            this._listBox.Location = new System.Drawing.Point(0, 0);
+            this._listBox.Name = "listBox1";
+            this._listBox.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.listBox1);
+            this.ClientSize = new System.Drawing.Size(350, 600);
+            this.Controls.Add(this._listBox);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "KeyPressStatistics";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ListBox _listBox;
+        private System.Windows.Forms.Timer _updateTimer;
     }
 }
 

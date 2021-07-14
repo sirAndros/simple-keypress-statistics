@@ -23,9 +23,9 @@ namespace KeyPressStat
 
             _listener.KeyDown += OnKeyDown;
 
-            timer1.Interval = 500;
-            timer1.Tick += OnTimerTick;
-            timer1.Start();
+            _updateTimer.Interval = 500;
+            _updateTimer.Tick += OnTimerTick;
+            _updateTimer.Start();
         }
 
         private void OnKeyDown(object sender, RawKeyEventArgs e)
@@ -53,8 +53,8 @@ namespace KeyPressStat
         private void UpdateView()
         {
             if (!Visible) return;
-            listBox1.Items.Clear();
-            listBox1.Items.AddRange(_stats.Select(i => $"{i.Key:X4}|{i.Value}").ToArray());
+            _listBox.Items.Clear();
+            _listBox.Items.AddRange(_stats.Select(i => $"{i.Key:X4}|{i.Value}").ToArray());
         }
 
         protected override void OnClosing(CancelEventArgs e)
