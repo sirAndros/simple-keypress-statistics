@@ -11,7 +11,7 @@ namespace KeyPressStat
 {
     public partial class Form1 : Form
     {
-        private ConcurrentDictionary<string, int> _stat = new ConcurrentDictionary<string, int>();
+        private ConcurrentDictionary<int, StatisticsEntry> _stat = new ConcurrentDictionary<int, StatisticsEntry>();
         private KeyboardListener _listener = new KeyboardListener();
 
         public Form1()
@@ -20,10 +20,11 @@ namespace KeyPressStat
 
             _listener.KeyDown += (s,e) =>
             {
-                var key = e.Character;
-                if (String.IsNullOrEmpty(key))
-                    key = e.Key.ToString();
-                _stat.AddOrUpdate(key, 1, (k,l) => l+1);
+                _stat.AddOrUpdate(e.VKCode, new StatisticsEntry(e.VKCode, e.Key, e.Character), (_,existing) => 
+                {
+                    existing.Increment();
+                    return existing;
+                });
             };
 
             timer1.Interval = 500;
@@ -40,7 +41,7 @@ namespace KeyPressStat
         {
             if (!Visible) return;
             listBox1.Items.Clear();
-            listBox1.Items.AddRange(_stat.Select(i => $"{i.Key}: {i.Value}").ToArray());
+            listBox1.Items.AddRange(_stat.Select(i => $"{i.Key:X4}|{i.Value}").ToArray());
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -54,10 +55,8 @@ namespace KeyPressStat
         {
             var fileName = Guid.NewGuid().ToString() + ".txt";
             using var file = new StreamWriter(fileName);
-            foreach (var item in _stat)
-            {
-                file.WriteLine($"{item.Key} | {item.Value}");
-            }
+            foreach (var item in _stat.Values)
+                file.WriteLine($"{item.VKCode:X4} | {item.Key} | {item.Character} | {item.Count}");
         }
     }
 }
